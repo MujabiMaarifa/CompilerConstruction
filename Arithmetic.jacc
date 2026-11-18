@@ -1,0 +1,17 @@
+// Recognize arithmetic expressions with addition and multiplication.
+%token NUMBER
+%start Expr
+
+%%
+
+Expr : Expr '+' Term
+     | Term
+     ;
+
+Term : Term '*' Factor
+     | Factor
+     ;
+
+Factor : NUMBER
+       | '(' Expr ')'
+       ;
