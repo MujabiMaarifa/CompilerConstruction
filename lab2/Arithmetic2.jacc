@@ -1,0 +1,27 @@
+// Recognize arithmetic expressions with addition and multiplication.
+%token NUMBER
+%start Expr
+
+%%
+
+//+ and - operators are in the same precedence level
+Expr : Expr '+' Term
+     | Expr '-' Term
+     | Term
+     ;
+
+//* and / operators are in the same level
+Term : Term '*' Exp
+     | Term '/' Exp
+     | Exp 
+     ;
+
+//deeper in the level 
+Exp : Factor '^' Exp
+    | Factor
+    ;
+
+Factor : NUMBER
+       | '(' Expr ')'
+       ;
+
